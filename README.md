@@ -89,7 +89,7 @@ pip install -r requirements.txt
 ```bash
 streamlit run app.py
 ```
-La aplicación se abrirá en tu navegador en `http://localhost:8501](https://kevindev-exe-laboratorio-mineria-app-yvhg5n.streamlit.app/´.
+La aplicación se abrirá en tu navegador en `https://kevindev-exe-laboratorio-mineria-app-yvhg5n.streamlit.app´.
 
 ### 4. Abrir el Cuaderno Jupyter (Local o Google Colab)
 ```bash
