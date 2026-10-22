@@ -2,17 +2,18 @@
 
 ![Python](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python)
 ![Scikit-Learn](https://img.shields.io/badge/scikit--learn-1.0%2B-orange?logo=scikit-learn)
+![Streamlit](https://img.shields.io/badge/Streamlit-App%20Interactiva-FF4B4B?logo=streamlit)
 ![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-150458?logo=pandas)
 ![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?logo=jupyter)
 ![Status](https://img.shields.io/badge/Status-Completado-brightgreen)
 
-Proyecto de análisis exploratorio, modelado de aprendizaje no supervisado y segmentación estratégica de clientes para un centro comercial (*Mall Customers*), utilizando el algoritmo **K-Means Clustering** y técnicas de validación como el **Método del Codo** y el **Coeficiente de Silueta**.
+Proyecto integral de análisis exploratorio, modelado de aprendizaje no supervisado, evaluación de clusters y despliegue interactivo para la segmentación estratégica de clientes de un centro comercial (*Mall Customers*), utilizando el algoritmo **K-Means Clustering**, validación mediante **Método del Codo** y **Coeficiente de Silueta**, y una aplicación web en **Streamlit**.
 
 ---
 
 ## 🎯 Objetivo del Proyecto
 
-Identificar patrones de comportamiento en los visitantes de un centro comercial en función de su **Ingreso Anual (k$)** y su **Puntuación de Gasto (1-100)** para diseñar estrategias de marketing segmentadas, optimizar el retorno de inversión publicitaria y maximizar la fidelización de clientes.
+Identificar patrones de comportamiento en los visitantes de un centro comercial en función de su **Ingreso Anual (k$)** y su **Puntuación de Gasto (1-100)** para diseñar estrategias de marketing segmentadas, optimizar el retorno de inversión publicitaria y clasificar nuevos clientes en tiempo real.
 
 ---
 
@@ -21,13 +22,16 @@ Identificar patrones de comportamiento en los visitantes de un centro comercial 
 ```text
 Laboratorio-mineria/
 │
-├── Mall_Customers.csv                 # Dataset con 200 registros de clientes
-├── generate_analysis_and_report.py    # Script integral: EDA, K-Means, gráficos e informe Word
-├── create_notebook.py                 # Generador programático del cuaderno Jupyter
-├── taller_kmeans_mall_customers.ipynb # Cuaderno interactivo (Local y Google Colab)
-├── Respuestas_Taller_KMeans.docx      # Informe formal en Word con respuestas del taller
+├── app.py                                             # Aplicación Web Interactiva en Streamlit (Parte 7)
+├── Mall_Customers.csv                                 # Dataset oficial con 200 registros de clientes
+├── taller_kmeans_mall_customers.ipynb                 # Cuaderno Jupyter interactivo (Local y Google Colab)
+├── Respuestas_Taller_KMeans.docx                      # Informe formal en Word con todas las respuestas (Partes 1-7)
+├── Taller_Final_Mineria_de_Datos_KMeans_Completo.docx # Copia maestra del documento Word completo
+├── generate_analysis_and_report.py                    # Script integral: EDA, K-Means, gráficos e informe Word
+├── create_notebook.py                                 # Generador programático del cuaderno Jupyter
+├── requirements.txt                                   # Dependencias del proyecto para entorno local y Streamlit Cloud
 │
-├── graficos/                          # Visualizaciones en alta resolución (300 DPI)
+├── graficos/                                          # Visualizaciones en alta resolución (300 DPI)
 │   ├── eda_distribuciones_outliers.png
 │   ├── eda_relaciones_correlacion.png
 │   ├── metodo_del_codo.png
@@ -35,35 +39,40 @@ Laboratorio-mineria/
 │   ├── clusters_kmeans_final.png
 │   └── mapa_segmentos_negocio.png
 │
-└── README.md                          # Documentación del proyecto
+└── README.md                                          # Documentación del proyecto
 ```
 
 ---
 
-## 🔍 Metodología Aplicada
+## 🔍 Metodología Aplicada (Partes 1 a 7)
 
-1. **Análisis Exploratorio de Datos (EDA):**
-   - Estadísticas descriptivas de edad, ingresos y puntajes de gasto.
-   - Detección de valores atípicos mediante el Rango Intercuartílico ($IQR$).
-   - Análisis de correlación y distribuciones por género.
+1. **Parte 1 – Exploración de Datos (EDA):**
+   - Estadísticas descriptivas completas de edad, ingresos y puntajes de gasto.
+   - Detección de valores atípicos mediante el Rango Intercuartílico ($IQR$): identificación de 2 outliers superiores en ingreso anual ($137\text{k}\$$).
+   - Análisis de relaciones bivariadas y matriz de correlación de Pearson.
 
-2. **Preprocesamiento:**
-   - Estandarización de variables con `StandardScaler` para balancear la escala de ingresos y puntajes de gasto.
+2. **Parte 2 – Preprocesamiento:**
+   - Estandarización Z-Score con `StandardScaler` ($\mu=0, \sigma=1$) para garantizar equidad geométrica en el cálculo de distancias euclidianas.
 
-3. **Determinación del Número Óptimo de Clusters ($k$):**
-   - **Método del Codo:** Evaluación de la inercia intra-cluster ($WCSS$) para $k \in [2, 10]$, detectando el punto de inflexión en $k = 5$.
-   - **Coeficiente de Silueta:** Máxima cohesión y separación validada con $k = 5$ (Score $\approx 0.55$).
+3. **Parte 3 y 4 – Determinación del Número Óptimo de Clusters ($K$):**
+   - **Método del Codo:** Evaluación de la inercia intra-cluster ($WCSS$) para $K \in [1, 10]$, detectando el punto de inflexión en **$K = 5$** ($WCSS = 65.57$).
+   - **Coeficiente de Silueta:** Máxima cohesión y separación validada exactamente en **$K = 5$** ($\text{Silhouette Score} = 0.5547$).
 
-4. **Segmentación Estratégica ($k = 5$ Grupos):**
-   - **👑 Clientes VIP (Alto Ingreso, Alto Gasto):** El grupo de mayor rentabilidad. Estrategia: Clubes de fidelización exclusivos y atención prémium.
-   - **💎 Ahorradores Cautelosos (Alto Ingreso, Bajo Gasto):** Mayor potencial de crecimiento. Estrategia: Ofertas de alto valor percibido, calidad y durabilidad.
-   - **🛍️ Consumidores Impulsivos (Bajo Ingreso, Alto Gasto):** Alta receptividad a tendencias. Estrategia: Micro-financiamiento, cuotas y campañas en redes sociales.
-   - **⚖️ Clientes Promedio (Ingreso Medio, Gasto Medio):** El núcleo del volumen transaccional (~40% de los clientes). Estrategia: Venta cruzada (*cross-selling*) y promociones familiares.
-   - **🏷️ Clientes de Bajo Valor (Bajo Ingreso, Bajo Gasto):** Sensibles al precio. Estrategia: Descuentos masivos, ferias tipo *outlet* y líneas accesibles.
+4. **Parte 5 y 6 – Modelo K-Means e Interpretación de Negocio ($K = 5$ Grupos):**
+   - **👑 Clientes de Alto Valor / VIP (Alto Ingreso, Alto Gasto):** El grupo de mayor rentabilidad. Estrategia: Fidelización exclusiva, preventas VIP y atención prémium.
+   - **💎 Clientes con Potencial - Ahorradores Cautelosos (Alto Ingreso, Bajo Gasto):** Mayor oportunidad de crecimiento (ROI). Estrategia: Propuesta de valor basada en calidad, durabilidad y prestigio.
+   - **⚡ Clientes con Potencial - Consumidores Impulsivos (Bajo Ingreso, Alto Gasto):** Alta receptividad a tendencias jóvenes. Estrategia: Pagos flexibles (BNPL) y marketing digital en redes sociales.
+   - **⚖️ Clientes Promedio (Ingreso Medio, Gasto Medio):** Núcleo del tráfico del centro comercial (40.5% de clientes). Estrategia: Venta cruzada (*cross-selling*) y paquetes familiares.
+   - **🏷️ Clientes de Bajo Valor (Bajo Ingreso, Bajo Gasto):** Sensibles al precio. Estrategia: Descuentos, promociones 2x1 y zonas *outlet*.
+
+5. **Parte 7 – Despliegue Interactivo con Streamlit (`app.py`):**
+   - Visualización interactiva del método del codo y silueta con Plotly.
+   - Exploración de los 5 clusters generados y sus centroides.
+   - Clasificador de nuevos clientes en tiempo real mediante controles deslizantes (*sliders*) y botones rápidos de prueba por arquetipo.
 
 ---
 
-## 🚀 Instalación y Uso
+## 🚀 Instalación y Ejecución
 
 ### 1. Clonar el repositorio
 ```bash
@@ -72,31 +81,26 @@ cd Laboratorio-mineria
 ```
 
 ### 2. Instalar dependencias
-Se recomienda un entorno virtual con Python 3.9 o superior:
 ```bash
-pip install pandas numpy scikit-learn matplotlib seaborn python-docx notebook
+pip install -r requirements.txt
 ```
 
-### 3. Ejecutar el análisis y regenerar el informe
-Para correr todo el pipeline analítico y generar el archivo Word junto con los gráficos:
+### 3. Ejecutar la Aplicación Interactiva en Streamlit (Parte 7)
 ```bash
-python generate_analysis_and_report.py
+streamlit run app.py
 ```
+La aplicación se abrirá en tu navegador en `http://localhost:8501`.
 
-### 4. Abrir el Cuaderno Interactivo
+### 4. Abrir el Cuaderno Jupyter (Local o Google Colab)
 ```bash
 jupyter notebook taller_kmeans_mall_customers.ipynb
 ```
-*(También puedes abrirlo directamente en Google Colab o en VS Code)*.
+*(El cuaderno cuenta con carga híbrida automática del dataset para funcionar directamente en Google Colab sin configuraciones manuales)*.
 
----
-
-## 📊 Resultados Visuales
-
-El análisis produce las figuras disponibles en la carpeta [`graficos/`](graficos/):
-- **Clusters Finales:** Mapeo de centroides y asignación de cada cliente en el plano dimensional.
-- **Validación Matemática:** Gráficas del Codo y Silueta justificando $k=5$.
-- **Mapa de Oportunidades de Negocio:** Clasificación estratégica con directrices de marketing.
+### 5. Regenerar el Informe Word y Gráficos
+```bash
+python generate_analysis_and_report.py
+```
 
 ---
 
