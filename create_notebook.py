@@ -12,7 +12,8 @@ cells = []
 # 0. ENCABEZADO Y BADGE COLAB
 cells.append(nbf.v4.new_markdown_cell("""# 🛍️ TALLER FINAL DE MINERÍA DE DATOS: SEGMENTACIÓN DE CLIENTES CON K-MEANS
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/KevinDev-exe/Laboratorio-mineria/blob/main/taller_kmeans_mall_customers.ipynb)
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/deploy?repository=KevinDev-exe/Laboratorio-mineria&branch=main&mainModule=app.py)
 
 **Asignatura:** Minería de Datos & Inteligencia de Negocios  
 **Dataset:** Mall Customers Dataset ([Kaggle Source](https://www.kaggle.com/datasets/vjchoudhary7/customer-segmentation-tutorial-in-python))  

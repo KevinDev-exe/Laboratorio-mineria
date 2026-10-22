@@ -1,0 +1,18 @@
+name: Keep Streamlit App Alive 24/7
+
+on:
+  schedule:
+    # Se ejecuta automáticamente cada 6 horas todos los días para mantener la app despierta 24/7
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+
+jobs:
+  ping-streamlit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Streamlit App
+        env:
+          APP_URL: ${{ vars.STREAMLIT_APP_URL || 'https://laboratorio-mineria.streamlit.app' }}
+        run: |
+          echo "Haciendo ping a $APP_URL para mantenerla en línea 24/7..."
+          curl -s -L -I "$APP_URL" || true

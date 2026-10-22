@@ -1,11 +1,11 @@
 # 🛍️ Taller de Minería de Datos: Segmentación de Clientes con K-Means
 
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/deploy?repository=KevinDev-exe/Laboratorio-mineria&branch=main&mainModule=app.py)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/KevinDev-exe/Laboratorio-mineria/blob/main/taller_kmeans_mall_customers.ipynb)
 ![Python](https://img.shields.io/badge/Python-3.9%2B-blue?logo=python)
 ![Scikit-Learn](https://img.shields.io/badge/scikit--learn-1.0%2B-orange?logo=scikit-learn)
 ![Streamlit](https://img.shields.io/badge/Streamlit-App%20Interactiva-FF4B4B?logo=streamlit)
-![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-150458?logo=pandas)
-![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?logo=jupyter)
-![Status](https://img.shields.io/badge/Status-Completado-brightgreen)
+![Status](https://img.shields.io/badge/Status-24%2F7%20Online-brightgreen)
 
 Proyecto integral de análisis exploratorio, modelado de aprendizaje no supervisado, evaluación de clusters y despliegue interactivo para la segmentación estratégica de clientes de un centro comercial (*Mall Customers*), utilizando el algoritmo **K-Means Clustering**, validación mediante **Método del Codo** y **Coeficiente de Silueta**, y una aplicación web en **Streamlit**.
 
